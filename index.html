@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Approved - Warranty Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- A1 Approved Theme Styles --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            /* Dark background */
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 102, 0, 0.15) 0%, rgba(0, 0, 0, 0) 50%);
+            /* Orange gradient */
+        }
+
+        .glass-nav {
+            background: rgba(26, 26, 26, 0.8);
+            /* Dark, slightly transparent */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
+            /* Orange border */
+        }
+
+        .gradient-border {
+            position: relative;
+            border: 1px solid transparent;
+            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                linear-gradient(45deg, #FF6600, transparent) border-box;
+            /* Orange gradient border */
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.9));
+            /* Darker card background */
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            /* Orange border */
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 102, 0, 0.4);
+            /* Brighter orange on hover */
+        }
+
+
+        .product-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            /* Orange border */
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            border-color: rgba(255, 102, 0, 0.4);
+            /* Brighter orange on hover */
+        }
+
+        .blog-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.9));
+            /* Darker card background */
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .button-gradient {
+            background: linear-gradient(45deg, #FF6600, #FF8533);
+            /* Orange gradient */
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .button-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.3);
+            /* Orange shadow */
+        }
+
+
+        .section-spacing {
+            padding: 120px 0;
+        }
+
+        .parallax {
+            transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .testimonial-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            /* Orange border */
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+            /* Added padding */
+            border-radius: 0.75rem;
+            /* Added border-radius */
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 102, 0, 0.4);
+            /* Brighter orange on hover */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 102, 0, 0.4);
+            /* Orange scrollbar */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 102, 0, 0.6);
+            /* Brighter orange on hover */
+        }
+
+        /* Magnetic Button Effect */
+        .magnetic-button {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        /* Loading animation */
+        @keyframes loading {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-spinner {
+            animation: loading 1s linear infinite;
+        }
+
+        /* Parallax mouse effect */
+        .mouse-parallax {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .parallax-layer {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Smooth reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Progress bar */
+        .progress-bar {
+            height: 3px;
+            background: linear-gradient(to right, #FF6600, #FF8533);
+            /* Orange gradient */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Cursor follower */
+        .cursor-follower {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 102, 0, 0.6);
+            /* Orange border */
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        /* Section Content visibility */
+        .section-content {
+            opacity: 1 !important;
+            /* Force sections to be visible */
+            display: block !important;
+        }
+
+        /* Modify reveal class to ensure elements are visible by default */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-content.hidden {
+            opacity: 0;
+        }
+
+        @keyframes lineFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-line {
+            opacity: 0;
+            animation: lineFadeIn 0.6s ease-out forwards;
+        }
+
+        /* Default styling */
+        .hover-zoom {
+            transition: transform 0.5s ease-in-out;
+            /* Smooth zoom effect */
+            transform: scale(1);
+            /* Default scale */
+        }
+
+        /* On hover, apply zoom */
+        .hover-zoom:hover {
+            transform: scale(1.1);
+            /* Adjust scale for the desired zoom level */
+        }
+
+        .group:hover .zoom-hover {
+            transform: scale(1.1);
+            /* Adjust the scale factor as necessary */
+        }
+
+
+        /* Frosted Glass Effect */
+        .glassy-box {
+            background-color: rgba(40, 40, 40, 0.3);
+            /* Translucent dark background */
+            backdrop-filter: blur(10px);
+            /* Apply blur effect on the background */
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            /* Orange border */
+            padding: 2rem;
+            /* Adjust padding as needed */
+            border-radius: 1rem;
+            /* Rounded corners */
+            margin-top: 2rem;
+            /* Space above the container */
+        }
+
+
+        /* Client Carousel Styling */
+        .client-carousel {
+            display: flex;
+            gap: 2rem;
+            white-space: nowrap;
+            transition: transform 0.5s ease;
+        }
+
+        .client-carousel img {
+            max-height: 100px;
+            object-contain: contain;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .client-carousel .client-item {
+            flex-shrink: 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .client-carousel .client-item:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .glassy-smoked {
+            background: rgba(26, 26, 26, 0.6);
+            /* Semi-transparent dark */
+            backdrop-filter: blur(10px);
+            /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            /* Safari support */
+            border-radius: 8px;
+            /* Optional: Rounded corners */
+        }
+
+        /* --- A1 Approved Specific Overrides --- */
+        .text-yellow-400 {
+            color: #FF6600;
+            /* A1 Approved Orange */
+        }
+
+        .hover\:text-yellow-400:hover {
+            color: #FF8533;
+            /* Lighter Orange on Hover */
+        }
+
+        .border-yellow-400 {
+            border-color: #FF6600;
+            /* A1 Approved Orange */
+        }
+
+        .bg-yellow-400 {
+            background-color: #FF6600;
+            /*A1 Approved Orange*/
+        }
+
+        .focus\:border-yellow-400:focus {
+            border-color: #FF8533;
+            /* Lighter Orange on Focus */
+        }
+
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, #FF6600, #FF8533);
+            /* Example orange gradient */
+        }
+
+        .warranty-details-list {
+            list-style: none;
+            /* Remove default bullet points */
+            padding-left: 0;
+        }
+
+        .warranty-details-list li::before {
+            content: '✔';
+            /* Custom checkmark */
+            color: #FF6600;
+            /* Orange checkmark */
+            margin-right: 0.5em;
+        }
+
+        /* Style for the component list */
+        .component-list {
+            list-style: disc;
+            /* Use standard bullet points */
+            padding-left: 20px;
+            /* Standard indentation */
+            margin-bottom: 1rem;
+            /* Space between items */
+        }
+
+        .component-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Service Overview Card Styles */
+        .service-card {
+            /* Remove this, it's redundant with feature-card */
+            /* Styles are now fully handled by feature-card and other classes */
+        }
+
+        .service-icon {
+            /* Apply the gradient to the icon */
+            background-image: linear-gradient(45deg, #FF6600, #FF8533);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+            /* Add a transition for hover effect */
+
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            /* Slightly enlarge icon on hover */
+            /*  optionally, add a slight color shift on hover by changing the gradient slightly.
+       Not strictly necessary, but adds another subtle interactive cue.*/
+            background-image: linear-gradient(45deg, #FF8533, #FF6600);
+
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1001;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Black w/ opacity */
+        }
+
+        .modal-content {
+            position: relative;
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(26, 26, 26, 0.9));
+            margin: 5% auto;
+            /* 5% from the top and centered */
+            padding: 20px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+            max-width: 800px;
+            /* Add a max-width */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            border-radius: 0.75rem;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            /* Absolute positioning */
+            top: 10px;
+            /* Position from the top */
+            right: 15px;
+            /* Position from the right */
+
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #FF6600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Modal Animation */
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .glassy-box .text-4xl {
+                font-size: 1.875rem;
+                /* Decrease counter font size */
+                line-height: 2.25rem;
+            }
+
+            .footer-content {
+                text-align: center;
+                /* Center footer content */
+            }
+
+            .modal-content {
+                width: 95%;
+                /* More width on smaller screens */
+                margin: 10% auto;
+                /* Adjust margin for better spacing */
+            }
+        }
+
+        /* Ensure the mobile menu close button is visible */
+        .mobile-menu .fa-times {
+            display: block !important;
+            /* Force it to be shown */
+        }
+
+        /* Style improvements for the Warranty Details inside the modal */
+        .modal-content .warranty-details-list li::before {
+            margin-right: 0.5em;
+            /* Consistent spacing */
+        }
+
+        .modal-content .component-list {
+            padding-left: 20px;
+            /* Standard indentation */
+        }
+
+        .modal-content .component-list li {
+            margin-bottom: 0.25rem;
+            /* Tighter spacing */
+        }
+
+        /* Increase spacing between "What's NOT Covered?" and list */
+        .modal-content .mt-8 {
+            margin-top: 1.5rem;
+            /* Add more space */
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="scrollProgress"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-follower hidden md:block" id="cursorFollower"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <div class="relative w-full max-w-xs">
+                    <!-- Replace with your actual logo path -->
+                    <img src="logo.png" alt="A1 Approved" class="w-16 h-auto">
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">About</a>
+                    <a href="#products"
+                        class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Products</a>
+                    <a href="#gallery"
+                        class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Gallery</a>
+                    <a href="#testimonials"
+                        class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Testimonials</a>
+                    <a href="#faq" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">FAQ</a>
+                    <a href="#blog" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Blog</a>
+                    <a href="#contact"
+                        class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Contact</a>
+                </div>
+                <button
+                    class="hidden sm:block button-gradient magnetic-button text-black px-6 py-2 rounded-full font-medium">
+                    Get Started
+                </button>
+                <button class="md:hidden text-yellow-400" id="mobileMenuButton">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 glassy-smoked z-50 p-6">
+        <button class="absolute top-6 right-6 text-yellow-400" id="closeMenuButton">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="flex flex-col space-y-6 mt-20">
+            <a href="#home" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Home</a>
+            <a href="#about" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">About</a>
+            <a href="#products" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Products</a>
+            <a href="#gallery" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Gallery</a>
+            <a href="#testimonials"
+                class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Testimonials</a>
+            <a href="#faq" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">FAQ</a>
+            <a href="#blog" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Blog</a>
+            <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition-all duration-300">Contact</a>
+            <button class="button-gradient magnetic-button text-black px-6 py-2 rounded-full font-medium">
+                Get Started
+            </button>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 hero-gradient relative">
+        <div id="particles-js" class="absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Text Section -->
+            <div class="z-10 order-2 md:order-1 animate-power">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    <span class="block animate-line" style="animation-delay: 0.4s;margin-bottom: 10px;">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+                            2-Year Platinum Warranty
+                        </span>
+                    </span>
+                    <span class="block animate-line" style="animation-delay: 0.6s;">
+                        From Just £1,299
+                    </span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 animate-line" style="animation-delay: 0.8s;">
+                    Comprehensive coverage for complete peace of mind. Get repairs up to the full value of your car,
+                    with
+                    options for upfront payment, finance inclusion, or interest-free monthly installments.
+                </p>
+                <div class="flex gap-4">
+                    <button
+                        class="button-gradient magnetic-button text-black px-8 py-4 rounded-full font-medium animate-line"
+                        style="animation-delay: 1s;" id="upgradeNowBtn"> <!-- Added ID -->
+                        Upgrade Now
+                    </button>
+                    <button
+                        class="bg-white/10 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all duration-300 animate-line"
+                        style="animation-delay: 1.2s;" onclick="location.href='#products';">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="relative z-10 order-1 md:order-2">
+                <div class="parallax-layer">
+                    <img src="hero.jpeg" alt="Warranty" class="w-full rounded-2xl hover-zoom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="section-spacing">
+        <div class="max-w-7xl mx-auto px-6 section-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-2">
+                        About Us
+                    </p>
+                    <h2 class="text-4xl font-bold mb-6">Our Commitment</h2>
+                    <p class="text-gray-400 mb-8">
+                        Since 2001, A1 Approved has been providing reliable warranty solutions. We're dedicated to
+                        offering peace of mind with our comprehensive coverage and exceptional service.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Customer Focused</h3>
+                            <p class="text-gray-400">Putting our customers' needs first with personalized service.</p>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Trusted Partner</h3>
+                            <p class="text-gray-400">Building long-term relationships based on trust and reliability.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Counter Section in a Glassy Box -->
+                    <div class="glassy-box">
+                        <div class="grid grid-cols-3 gap-8 text-center">
+                            <div>
+                                <h3 class="text-4xl font-bold text-yellow-400" id="counter1">0</h3>
+                                <p class="text-gray-400">Years of Experience</p>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold text-yellow-400" id="counter2">0</h3>
+                                <p class="text-gray-400">Vehicles Covered</p>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold text-yellow-400" id="counter3">0</h3>
+                                <p class="text-gray-400">Claims Handled</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mouse-parallax reveal">
+                    <img src="about.jpeg" alt="About Us" class="rounded-2xl shadow-2xl hover-zoom  ">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Section -->
+    <section id="services" class="section-spacing">
+        <div class="max-w-7xl mx-auto px-6 section-content">
+            <div class="text-center mb-16 reveal">
+                <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-2">
+                    Services Overview
+                </p>
+                <h2 class="text-4xl font-bold mb-6">What We Cover</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    A quick look at the key areas covered by our warranty plans.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> <!-- Changed to grid-cols-3 -->
+                <!-- Service Card 1 -->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-car-burst text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Engine</h3>
+                    <p class="text-gray-400">Comprehensive coverage for engine failures.</p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-gears text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Transmission</h3>
+                    <p class="text-gray-400">Protection for manual and automatic transmissions.</p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-truck-ramp-box text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Suspension</h3>
+                    <p class="text-gray-400">Coverage for suspension components.</p>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-bolt text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Electrical</h3>
+                    <p class="text-gray-400">Protection for your car's electrical system.</p>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-fan text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Cooling System</h3>
+                    <p class="text-gray-400">Coverage for cooling system failures.</p>
+                </div>
+
+                <!-- Service Card 6-->
+                <div class="feature-card p-6 rounded-2xl reveal text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-gauge-high text-4xl service-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Gauges & Instruments</h3>
+                    <p class="text-gray-400">Coverage for gauge and instrument issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Products Section -->
+    <section id="products" class="section-spacing bg-black/30">
+        <div class="max-w-7xl mx-auto px-6 section-content">
+            <div class="text-center mb-16 reveal">
+                <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-2">
+                    Warranty Plans
+                </p>
+                <h2 class="text-4xl font-bold mb-4">Our Coverage</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Explore our range of warranty plans designed to fit your
+                    specific needs.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="productCards">
+                <!-- Product cards will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modals for Warranty Details -->
+    <div id="silverModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="text-3xl font-bold mb-4 text-yellow-400">FREE 90-Day Warranty with Every Car</h3>
+                <p class="text-gray-400 mb-6">Every car we sell comes with a totally free 90-day Silver Warranty
+                    with a
+                    £500 claim limit. We prepare our cars to the highest standards, but unexpected things happen.
+                    That's why we include this free warranty.</p>
+                <ul class="warranty-details-list mb-8">
+                    <li>Repairs can be carried out at any VAT-registered garage in the UK or by our DB Automotive
+                        service team.</li>
+                    <li>Claims up to £500, handled by A1 Approved Warranty—if it's covered, it's covered.</li>
+                    <li>Manufacturer-warranted parts and service history are safely stored on our system.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="goldModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <div class="feature-card p-8 rounded-2xl">
+                <h3 class="text-3xl font-bold mb-4 text-yellow-400">Gold Plan Details</h3>
+                <p class="text-gray-400 mb-6">
+                                        The Gold Plan offers enhanced coverage and additional benefits
+                                        compared to the Silver plan. Specific details would go here.</p>
+                                        <ul class="warranty-details-list mb-8">
+                                            <li>Enhanced repair coverage limits.</li>
+                                            <li>Additional covered components.</li>
+                                            <li>Roadside assistance included.</li>
+                                        </ul>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div id="platinumModal" class="modal">
+                                            <div class="modal-content">
+                                                <span class="close">×</span>
+                                                <div class="feature-card p-8 rounded-2xl">
+                                                    <h4 class="text-2xl font-bold mb-4 text-yellow-400">Upgrade to a 2-Year Platinum Warranty</h4>
+                                                    <p class="text-gray-400 mb-6">
+                                                        For around the price of one sunset drink in Ibiza per month, you can upgrade to a Platinum
+                                                        2-Year
+                                                        Warranty, covering repairs up to the full value of your car. Why wouldn't you protect your car
+                                                        like you protect your phone?
+                                                    </p>
+                                                    <p class="text-gray-400 mb-6">
+                                                        We've partnered with A1 Approved Warranties for over five years because they do things properly.
+                                                        If it's in the booklet, it's covered.
+                                                    </p>
+                                                    <ul class="warranty-details-list mb-8">
+                                                        <li>Peace of mind—because cars can go wrong.</li>
+                                                        <li>No hassle—claims are straightforward, and you'll even get a courtesy car if needed.</li>
+                                                        <li>Drive with confidence—knowing you won't be hit with a surprise bill.</li>
+                                                    </ul>
+                                                    <h3 class="text-xl font-bold mb-4 text-yellow-400">How Much Does It Cost?</h3>
+                                                    <p class="text-gray-400 mb-4">Our 2-Year Platinum Warranty costs just £1,299, and you can pay in
+                                                        three ways:</p>
+                                                    <ol class="list-decimal list-inside space-y-2 text-gray-400 mb-8">
+                                                        <li>Upfront payment</li>
+                                                        <li>Included in your finance agreement</li>
+                                                        <li>10 interest-free monthly payments</li>
+                                                    </ol>
+                                                </div>
+                                        
+                                        
+                                                <div class="feature-card p-8 rounded-2xl mt-8">
+                                                    <details>
+                                                        <summary class="text-2xl font-bold mb-4 text-yellow-400 cursor-pointer">Platinum Warranty
+                                                            Component Cover</summary>
+                                                        <p class="text-gray-400 mb-4">The following components are protected against mechanical failure.
+                                                            If a
+                                                            part is not specifically listed, it is not covered.</p>
+                                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-400">
+                                                            <div>
+                                                                <h4 class="font-semibold mb-2 text-yellow-400">Engine</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Cylinder block</li>
+                                                                    <li>Pistons</li>
+                                                                    <li>Rings</li>
+                                                                    <li>Crankshaft</li>
+                                                                    <li>Bearings</li>
+                                                                    <li>Timing chains</li>
+                                                                    <li>Gears</li>
+                                                                    <li>Distributor drive</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Turbo Unit</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Inlet and exhaust turbine shafts</li>
+                                                                    <li>Bearings</li>
+                                                                    <li>Wastegate devices</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Gearbox</h4>
+                                                                <ul class="component-list">
+                                                                    <li>All components in manual or automatic transmissions</li>
+                                                                    <li>Gears</li>
+                                                                    <li>Bearings</li>
+                                                                    <li>Clutches</li>
+                                        
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Clutch</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Clutch plate</li>
+                                                                    <li>Clutch cover</li>
+                                                                    <li>Thrust bearing</li>
+                                                                    <li>Release bearing</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Differential & Drive Shafts</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Gears</li>
+                                                                    <li>Pinions</li>
+                                                                    <li>Bearings</li>
+                                                                    <li>Shafts</li>
+                                                                    <li>Propshaft</li>
+                                                                    <li>C.V. joints</li>
+                                                                    <li>Couplings</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <h4 class="font-semibold mb-2 text-yellow-400">Brakes & Suspension</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Servo units</li>
+                                                                    <li>Cylinders</li>
+                                                                    <li>Valves</li>
+                                                                    <li>Control arms</li>
+                                                                    <li>Bushings</li>
+                                                                    <li>Ball joints</li>
+                                                                    <li>Pins</li>
+                                                                </ul>
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Steering & Bearings</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Power steering units</li>
+                                                                    <li>Rams</li>
+                                                                    <li>Pumps</li>
+                                                                    <li>Reservoirs</li>
+                                                                    <li>Steering box</li>
+                                                                    <li>Wheel bearings</li>
+                                                                    <li>Seals</li>
+                                                                    <li>Hubs</li>
+                                                                    <li>Flanges</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Cooling System & Ventilation</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Radiator</li>
+                                                                    <li>Matrix</li>
+                                                                    <li>Water pump</li>
+                                                                    <li>Head gasket</li>
+                                                                    <li>Thermostat</li>
+                                                                    <li>Heater assembly</li>
+                                                                    <li>Vents</li>
+                                                                    <li>Tubes</li>
+                                                                    <li>Controls</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Electronics & ECU</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Solid-state control units</li>
+                                                                    <li>Distributor</li>
+                                                                    <li>Coil</li>
+                                                                    <li>Motors</li>
+                                                                    <li>Solenoids</li>
+                                                                    <li>Relays</li>
+                                                                    <li>Alternator</li>
+                                                                    <li>Starter motor</li>
+                                                                    <li>Switches</li>
+                                                                    <li>Computers</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Air Conditioning & Fuel System</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Compressors</li>
+                                                                    <li>Pumps</li>
+                                                                    <li>Reservoirs</li>
+                                                                    <li>Fuel pump</li>
+                                                                    <li>Carburetor</li>
+                                                                    <li>Sender units</li>
+                                                                    <li>Gauges</li>
+                                                                    <li>Airflow meters</li>
+                                                                    <li>Accumulator</li>
+                                                                    <li>Fuel distributor</li>
+                                                                    <li>Regulator</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Locks & Seals</h4>
+                                                                <ul class="component-list">
+                                                                    <li>Regulators</li>
+                                                                    <li>Handles</li>
+                                                                    <li>Locks</li>
+                                                                    <li>Catches</li>
+                                                                    <li>Major oil seals</li>
+                                                                    <li>Gaskets</li>
+                                                                </ul>
+                                        
+                                                                <h4 class="font-semibold mb-2 mt-4 text-yellow-400">Casings</h4>
+                                                                <p>Covered if damaged by any of the above listed components.</p>
+                                                            </div>
+                                                        </div>
+                                                    </details>
+                                                </div>
+                                        
+                                                <div class="mt-8 reveal">
+                                                    <div class="feature-card p-8 rounded-2xl">
+                                                        <h4 class="text-2xl font-bold mb-4 text-yellow-400">What's NOT Covered?</h4>
+                                                        <p class="text-gray-400 mb-2">No small print here—we tell you upfront what isn't covered:</p>
+                                                        <ul class="list-disc list-inside text-gray-400">
+                                                            <li>Brake friction materials (discs, pads)</li>
+                                                            <li>Worn clutches or flywheels</li>
+                                                            <li>Batteries, oils, filters, consumables</li>
+                                                            <li>Glass, interior & exterior trim, bodywork, tyres</li>
+                                                            <li>Coil springs that show corrosion</li>
+                                                            <li>Paintwork, software updates, air con re-gassing</li>
+                                                            <li>Incorrect fuelling, wiper blades, satellite navigation discs</li>
+                                                            <li>Exhaust systems (including blocked DPF filters), bulbs, lamps</li>
+                                                            <li>Tracking, setting up costs, binding/seized brake components</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Gallery Section -->
+                                        <section id="gallery" class="section-spacing bg-black/30">
+                                            <div class="max-w-7xl mx-auto px-6  section-content">
+                                                <div class="text-center mb-16 reveal">
+                                                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4">Real-World Protection</p>
+                                                    <h2 class="text-4xl font-bold mb-6">Warranty in Action</h2>
+                                                    <p class="text-gray-400 max-w-2xl mx-auto">See how our warranty solutions have helped our customers.
+                                                    </p>
+                                                </div>
+                                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                    <!-- Project 1 -->
+                                                    <div class="relative group overflow-hidden rounded-2xl reveal">
+                                                        <img src="project1.png" alt="Project 1"
+                                                            class="w-full transform transition-transform duration-500 group-hover:scale-110 zoom-hover">
+                                                        <div
+                                                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                                            <div class="p-6 bg-black bg-opacity-50">
+                                                                <h3 class="text-xl font-bold mb-2 text-yellow-400">Engine Repair</h3>
+                                                                <p class="text-gray-300">Complete engine coverage for peace of mind.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Project 2 -->
+                                                    <div class="relative group overflow-hidden rounded-2xl reveal">
+                                                        <img src="project2.png" alt="Project 2"
+                                                            class="w-full transform transition-transform duration-500 group-hover:scale-110 zoom-hover">
+                                                        <div
+                                                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                                            <div class="p-6 bg-black bg-opacity-50">
+                                                                <h3 class="text-xl font-bold mb-2 text-yellow-400">Transmission Solutions</h3>
+                                                                <p class="text-gray-300">Reliable protection for transmission systems.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Project 3 -->
+                                                    <div class="relative group overflow-hidden rounded-2xl reveal">
+                                                        <img src="project3.png" alt="Project 3"
+                                                            class="w-full transform transition-transform duration-500 group-hover:scale-110 zoom-hover">
+                                                        <div
+                                                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                                            <div class="p-6 bg-black bg-opacity-50">
+                                                                <h3 class="text-xl font-bold mb-2 text-yellow-400">Electrical System</h3>
+                                                                <p class="text-gray-300">Comprehensive coverage for electrical components.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        <!-- Testimonials Section -->
+                                        <section id="testimonials" class="section-spacing">
+                                            <div class="max-w-7xl mx-auto px-6 section-content">
+                                                <div class="text-center mb-16 reveal">
+                                                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4">
+                                                        Customer Reviews
+                                                    </p>
+                                                    <h2 class="text-4xl font-bold mb-6">What Our Customers Say</h2>
+                                                    <p class="text-gray-400 max-w-2xl mx-auto">Hear from satisfied customers about their experience with
+                                                        A1 Approved.</p>
+                                                </div>
+                                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                    <!-- Testimonial 1 -->
+                                                    <div class="testimonial-card reveal">
+                                                        <p class="text-gray-300 italic mb-4">"A1 Approved saved me thousands on a major engine repair.
+                                                            The process was smooth and stress-free!"</p>
+                                                        <div class="flex items-center">
+                                                            <img src="client1.jpg" alt="Customer 1" class="w-12 h-12 rounded-full mr-4">
+                                                            <div>
+                                                                <h4 class="font-semibold text-yellow-400">Jane Doe</h4>
+                                                                <p class="text-gray-400 text-sm">Car Owner</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Testimonial 2 -->
+                                                    <div class="testimonial-card reveal">
+                                                        <p class="text-gray-300 italic mb-4">"I upgraded to the Platinum Warranty and it was the best
+                                                            decision. Their customer service is top-notch."</p>
+                                                        <div class="flex items-center">
+                                                            <img src="client2.jpg" alt="Customer 2" class="w-12 h-12 rounded-full mr-4">
+                                                            <div>
+                                                                <h4 class="font-semibold text-yellow-400">John Smith</h4>
+                                                                <p class="text-gray-400 text-sm">Car Owner</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Testimonial 3 -->
+                                                    <div class="testimonial-card reveal">
+                                                        <p class="text-gray-300 italic mb-4">"The claims process was so easy. I got my car fixed quickly
+                                                            and without any hassle. Highly recommend!"</p>
+                                                        <div class="flex items-center">
+                                                            <img src="client3.jpg" alt="Customer 3" class="w-12 h-12 rounded-full mr-4">
+                                                            <div>
+                                                                <h4 class="font-semibold text-yellow-400">Emily Brown</h4>
+                                                                <p class="text-gray-400 text-sm">Car Owner</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        <!-- FAQ Section -->
+                                        <section id="faq" class="section-spacing bg-black/30">
+                                            <div class="max-w-7xl mx-auto px-6 section-content">
+                                                <div class="text-center mb-16 reveal">
+                                                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4">
+                                                        Frequently Asked Questions
+                                                    </p>
+                                                    <h2 class="text-4xl font-bold mb-6">Everything You Need to Know</h2>
+                                                    <p class="text-gray-400 max-w-2xl mx-auto">Find answers to common questions about our warranty services.
+                                                    </p>
+                                                </div>
+                                                <div class="space-y-6">
+                                                    <!-- FAQ 1 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Can I use my own garage for
+                                                            repairs?</summary>
+                                                        <p class="text-gray-400 mt-4">Yes! You can use any VAT-registered independent garage. If you don't
+                                                            have a preferred garage, try The Good Garage Scheme online, or we can recommend one for you.
+                                                            Main
+                                                            dealers can be used, but you may need to cover the additional costs compared to an independent
+                                                            garage. Your warranty covers a labour rate of up to £100 per hour.</p>
+                                                    </details>
+                                                    <!-- FAQ 2 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Do I have to pay for repairs
+                                                            myself and claim the money back?</summary>
+                                                        <p class="text-gray-400 mt-4">No! We pay the garage directly over the phone before you collect your
+                                                            car. If they don't accept card payments, we can send an immediate bank transfer. All we ask is
+                                                            that
+                                                            the garage emails or faxes us their invoice first.</p>
+                                                    </details>
+                                                    <!-- FAQ 3 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Does my warranty cover
+                                                            worn-out components?</summary>
+                                                        <p class="text-gray-400 mt-4">No. No warranty covers normal wear and tear. The warranty is designed
+                                                            to
+                                                            cover unexpected failures, not routine wear and tear. Even a brand-new car warranty won't cover
+                                                            components that wear down over time.</p>
+                                                    </details>
+                                        
+                                                    <!-- FAQ 4 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Do I need to get my vehicle
+                                                            serviced?</summary>
+                                                        <p class="text-gray-400 mt-4">Yes! You must service your vehicle at the correct intervals as
+                                                            recommended by the manufacturer after purchase. It doesn't have to be done at a main dealer, but
+                                                            you'll need to keep receipts as proof of servicing. We are not concerned with the vehicle's
+                                                            service history before you purchased it.</p>
+                                                    </details>
+                                        
+                                                    <!-- FAQ 5-->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Does my warranty cover
+                                                            diagnostic charges?</summary>
+                                                        <p class="text-gray-400 mt-4">No, plug-in diagnostic charges aren't covered because different
+                                                            garages charge different amounts for the same service. However, the warranty does cover physical
+                                                            dismantling charges in the event of a valid claim, up to your warranty claim limit.</p>
+                                                    </details>
+                                                    <!-- FAQ 6-->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">Will I have to pay anything?
+                                                        </summary>
+                                                        <p class="text-gray-400 mt-4">If your claim is approved, we will cover the agreed amount with your
+                                                            garage. However, you may need to pay any non-covered components or any amount that exceeds your
+                                                            claim limit.</p>
+                                                    </details>
+                                        
+                                                    <!-- FAQ 7 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer">What is my claim limit?
+                                                        </summary>
+                                                        <p class="text-gray-400 mt-4">Year 1: Up to £5,000 per claim. Year 2: Up to £2,000 per claim. You
+                                                            can claim as many times as needed up to the total value of your vehicle.</p>
+                                                    </details>
+                                        
+                                                    <!-- FAQ 8 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer"> How do I make a claim?
+                                                        </summary>
+                                                        <p class="text-gray-400 mt-4"> If you experience a failure, follow the claims procedure outlined in
+                                                            your warranty booklet. Our team will guide you through the process and ensure you get back on
+                                                            the road as quickly as possible. </p>
+                                                    </details>
+                                        
+                                                    <!-- FAQ 9 -->
+                                                    <details class="bg-black/50 p-6 rounded-lg border border-gray-700 reveal">
+                                                        <summary class="text-lg font-semibold text-yellow-400 cursor-pointer"> Do I get a courtesy car?
+                                                        </summary>
+                                                        <p class="text-gray-400 mt-4"> Yes! With our Platinum Warranty, we offer a £50 per day budget for a
+                                                            courtesy vehicle. Speak to our claims team to arrange one. </p>
+                                                    </details>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        <!-- Blog Section -->
+                                        <section id="blog" class="section-spacing">
+                                            <div class="max-w-7xl mx-auto px-6 section-content">
+                                                <div class="text-center mb-16 reveal">
+                                                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4 ">
+                                                        Industry Insights
+                                                    </p>
+                                                    <h2 class="text-4xl font-bold mb-4">Latest News</h2>
+                                                    <p class="text-gray-400 max-w-2xl mx-auto">Stay informed with the latest updates in the warranty
+                                                        industry.</p>
+                                                </div>
+                                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                    <div class="blog-card rounded-2xl overflow-hidden reveal">
+                                                        <img src="blog1.png" alt="Blog 1" class="w-full">
+                                                        <div class="p-6">
+                                                            <div class="text-yellow-400 text-sm mb-2">Warranty Tips</div>
+                                                            <h3 class="text-xl font-bold mb-3">Choosing the Right Warranty Plan</h3>
+                                                            <p class="text-gray-400 mb-4">Tips for selecting the best coverage for your needs...</p>
+                                                            <a href="#" class="text-yellow-400 hover:text-yellow-300 flex items-center">
+                                                                Read More
+                                                                <i class="fas fa-arrow-right ml-2"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="blog-card rounded-2xl overflow-hidden reveal">
+                                                        <img src="blog2.png" alt="Blog 2" class="w-full">
+                                                        <div class="p-6">
+                                                            <div class="text-yellow-400 text-sm mb-2">Industry News</div>
+                                                            <h3 class="text-xl font-bold mb-3">Extended Warranty Trends</h3>
+                                                            <p class="text-gray-400 mb-4">Exploring current trends in extended warranties...</p>
+                                                            <a href="#" class="text-yellow-400 hover:text-yellow-300 flex items-center">
+                                                                Read More
+                                                                <i class="fas fa-arrow-right ml-2"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="blog-card rounded-2xl overflow-hidden reveal">
+                                                        <img src="blog3.png" alt="Blog 3" class="w-full">
+                                                        <div class="p-6">
+                                                            <div class="text-yellow-400 text-sm mb-2">Expert Advice</div>
+                                                            <h3 class="text-xl font-bold mb-3">Maintaining Your Vehicle</h3>
+                                                            <p class="text-gray-400 mb-4">Expert advice on vehicle maintenance and care...</p>
+                                                            <a href="#" class="text-yellow-400 hover:text-yellow-300 flex items-center">
+                                                                Read More
+                                                                <i class="fas fa-arrow-right ml-2"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        <!-- Client Section -->
+                                        <section id="clients" class="section-spacing bg-black/30">
+                                            <div class="max-w-7xl mx-auto px-6 section-content">
+                                                <div class="text-center mb-16 reveal">
+                                                    <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4">
+                                                        Trusted Partners
+                                                    </p>
+                                                    <h2 class="text-4xl font-bold mb-6">Our Partners</h2>
+                                                    <p class="text-gray-400 max-w-2xl mx-auto">We collaborate with leading automotive companies and
+                                                        dealerships.
+                                                    </p>
+                                                </div>
+                                                <!-- Client logos in a carousel -->
+                                                <div class="relative overflow-hidden">
+                                                    <div class="client-carousel flex gap-12 justify-center items-center">
+                                                        <!-- Client 1 -->
+                                                        <div
+                                                            class="flex justify-center items-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:opacity-80">
+                                                            <img src="client1.png" alt="Client 1"
+                                                                class="w-auto h-auto max-h-24 object-contain transition-all duration-300 ease-in-out">
+                                                        </div>
+                                                        <!-- Client 2 -->
+                                                        <div
+                                                            class="flex justify-center items-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:opacity-80">
+                                                            <img src="client2.png" alt="Client 2"
+                                                                class="w-auto h-auto max-h-24 object-contain transition-all duration-300 ease-in-out">
+                                                        </div>
+                                                        <!-- Client 3 -->
+                                                        <div
+                                                            class="flex justify-center items-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:opacity-80">
+                                                            <img src="client3.png" alt="Client 3"
+                                                                class="w-auto h-auto max-h-24 object-contain transition-all duration-300 ease-in-out">
+                                                        </div>
+                                                        <!-- Client 4 -->
+                                                        <div
+                                                            class="flex justify-center items-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:opacity-80">
+                                                            <img src="client4.png" alt="Client 4"
+                                                                class="w-40 h-auto max-h-24 object-contain transition-all duration-300 ease-in-out">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        
+                                        
+                                        
+                                        <!-- Contact Section -->
+                                        <section id="contact" class="section-spacing bg-black/30">
+                                            <div class="max-w-7xl mx-auto px-6 section-content">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                                                    <div class="reveal">
+                                                        <p class="text-lg md:text-xl text-yellow-400 font-medium tracking-wide mb-4">
+                                                            Contact Us
+                                                        </p>
+                                                        <h2 class="text-4xl font-bold mb-8">Get in Touch</h2>
+                                                        <p class="text-gray-400 mb-8">Have questions or need assistance? Contact our team today.</p>
+                                                        <form class="space-y-6">
+                                                            <div class="relative">
+                                                                <input type="text" placeholder="Your Name"
+                                                                    class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black">
+                                                                <div
+                                                                    class="absolute bottom--2 mt-1 left-0  w-0 h-0.5 bg-yellow-400 transition-all duration-300">
+                                                                </div>
+                                                            </div>
+                                                            <div class="relative">
+                                                                <input type="email" placeholder="Your Email"
+                                                                    class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black">
+                                                                <div class="absolute bottom--2 mt-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300">
+                                                                </div>
+                                                            </div>
+                                                            <div class="relative">
+                                                                <textarea placeholder="Your Message" rows="4"
+                                                                    class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black"></textarea>
+                                                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300">
+                                                                </div>
+                                                            </div>
+                                                            <button class="button-gradient magnetic-button w-full text-black py-4 rounded-lg font-medium">
+                                                                Send Message
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="reveal">
+                                                        <div class="bg-black/50 p-8 rounded-2xl border border-gray-800 mt-28">
+                                                            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                                                            <div class="space-y-6">
+                                                                <div class="flex items-start space-x-4">
+                                                                    <div class="text-yellow-400">
+                                                                        <i class="fas fa-map-marker-alt text-xl"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4 class="font-semibold mb-1">Address</h4>
+                                                                        <p class="text-gray-400">123 Warranty Street, City, State, Country</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex items-start space-x-4">
+                                                                    <div class="text-yellow-400">
+                                                                        <i class="fas fa-phone text-xl"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4 class="font-semibold mb-1">Phone</h4>
+                                                                        <p class="text-gray-400">+1 123 456 7890</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex items-start space-x-4">
+                                                                    <div class="text-yellow-400">
+                                                                        <i class="fas fa-envelope text-xl"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h4 class="font-semibold mb-1">Email</h4>
+                                                                        <p class="text-gray-400">info@a1approved.com</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mt-8">
+                                                                <h4 class="font-semibold mb-4">Follow Us</h4>
+                                                                <div class="flex space-x-4">
+                                                                    <a href="#"
+                                                                        class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:border-yellow-400 hover:text-yellow-400 transition-all duration-300">
+                                                                        <i class="fab fa-facebook-f"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                        class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:border-yellow-400 hover:text-yellow-400 transition-all duration-300">
+                                                                        <i class="fab fa-twitter"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                        class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:border-yellow-400 hover:text-yellow-400 transition-all duration-300">
+                                                                        <i class="fab fa-linkedin-in"></i>
+                                                                    </a>
+                                                                    <a href="#"
+                                                                        class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:border-yellow-400 hover:text-yellow-400 transition-all duration-300">
+                                                                        <i class="fab fa-instagram"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        
+                                        <!-- Footer -->
+                                        <footer class="bg-black/80 border-t border-gray-800">
+                                            <div class="max-w-7xl mx-auto px-6 py-12">
+                                                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 footer-content">
+                                                    <div>
+                                                        <div class="relative w-full max-w-xs mb-5">
+                                                            <!-- Replace with your actual logo path -->
+                                                            <img src="logo.png" alt="A1 Approved" class="w-16 h-auto">
+                                                        </div>
+                                                        <p class="text-gray-400">Providing reliable and comprehensive warranty solutions for your peace of
+                                                            mind.</p>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                                                        <ul class="space-y-3">
+                                                            <li><a href="#about"
+                                                                    class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">About
+                                                                    Us</a>
+                                                            </li>
+                                                            <li><a href="#products"
+                                                                    class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Products</a>
+                                                            </li>
+                                                            <li><a href="#gallery"
+                                                                    class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Gallery</a>
+                                                            </li>
+                                                            <li><a href="#blog"
+                                                                    class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Blog</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-lg font-semibold mb-6">Warranty Plans</h4>
+                                                        <ul class                     class="space-y-3">
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Silver
+                                Plan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Gold
+                                Plan</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Platinum
+                                Plan</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest news and offers.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 bg-black/50 border border-gray-700 rounded-l-lg py-2 px-4 focus:border-yellow-400 transition-colors duration-300">
+                        <button class="button-gradient px-6 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center footer-content">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 A1 Approved. All rights reserved.</p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Privacy
+                        Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Terms of
+                        Service</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Cookie
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#FF6600" }, // A1 Approved Orange
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    animation: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, size_min: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#FF6600", // A1 Approved Orange
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Modified reveal animations for sections
+            gsap.utils.toArray('.section-content').forEach(section => {
+
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Modified reveal animations for elements
+            gsap.utils.toArray('.reveal').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Progress bar animation
+            const updateProgressBar = () => {
+                const scroll = window.scrollY;
+                const height = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scroll / height) * 100;
+                document.getElementById('scrollProgress').style.width = `${progress}%`;
+            };
+            window.addEventListener('scroll', updateProgressBar);
+
+
+            // Product Card Data
+            const productData = [
+                {
+                    name: "Silver Plan",
+                    description: "Basic coverage for essential components.",
+                    image: "silver.png",
+                    modalId: "silverModal", // ID of the modal
+                    bullets: [ // Key features as bullet points
+                        "90-day coverage",
+                        "£500 claim limit",
+                        "UK-wide repair network"
+                    ]
+                },
+                {
+                    name: "Gold Plan",
+                    description: "Enhanced coverage with additional benefits.",
+                    image: "gold.png",
+                    modalId: "goldModal",
+                    bullets: [
+                        "Extended coverage period",
+                        "Higher claim limits",
+                        "Roadside assistance"
+                    ]
+                },
+                {
+                    name: "Platinum Plan",
+                    description: "Comprehensive coverage for ultimate protection.",
+                    image: "platinum.png",
+                    modalId: "platinumModal",
+                    bullets: [
+                        "2-year coverage",
+                        "Covers repairs up to car value",
+                        "Courtesy car included"
+                    ]
+                },
+            ];
+
+            // Function to create product cards dynamically
+            const productCardsContainer = document.getElementById("productCards");
+
+            if (productCardsContainer) {
+                productData.forEach(product => {
+                    const productCard = document.createElement("div");
+                    productCard.classList.add("product-card", "p-6", "rounded-2xl", "reveal");
+
+                    // Build the bullet points HTML
+                    let bulletsHTML = '<ul class="list-disc list-inside text-gray-400 mt-2 mb-4">';
+                    product.bullets.forEach(bullet => {
+                        bulletsHTML += `<li>${bullet}</li>`;
+                    });
+                    bulletsHTML += '</ul>';
+
+
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl mb-4 hover-zoom">
+                        <h3 class="text-xl font-bold mb-2 text-yellow-400">${product.name}</h3>
+                        <p class="text-gray-400">${product.description}</p>
+                        ${bulletsHTML}
+                        <button class="button-gradient text-black px-6 py-2 rounded-full font-medium learn-more-btn" data-modal="${product.modalId}">Learn More</button>
+                    `;
+                    productCardsContainer.appendChild(productCard);
+                });
+
+                // Modal functionality
+                const learnMoreButtons = document.querySelectorAll('.learn-more-btn');
+                const modals = document.querySelectorAll('.modal');
+                const closeButtons = document.querySelectorAll('.close');
+
+                learnMoreButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const modalId = button.dataset.modal;
+                        const modal = document.getElementById(modalId);
+                        if (modal) {
+                            modal.style.display = "block";
+                        }
+                    });
+                });
+
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Close the parent modal of the clicked close button
+                        button.closest('.modal').style.display = "none";
+                    });
+                });
+
+                window.addEventListener('click', (event) => {
+                    modals.forEach(modal => {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    });
+                });
+            }
+
+        });
+
+        // Mobile Menu Functionality
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Cursor Follower
+        const cursorFollower = document.getElementById('cursorFollower');
+        if (cursorFollower) {
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursorFollower, {
+                    x: e.clientX - 10,
+                    y: e.clientY - 10,
+                    duration: 0.2
+                });
+            });
+        }
+
+        // Magnetic Button Effect
+        const magneticButtons = document.querySelectorAll('.magnetic-button');
+        magneticButtons.forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const bounds = button.getBoundingClientRect();
+                const x = e.clientX - bounds.left - bounds.width / 2;
+                const y = e.clientY - bounds.top - bounds.height / 2;
+
+                gsap.to(button, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.2
+                });
+            });
+
+            button.addEventListener('mouseleave', () => {
+                gsap.to(button, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.2
+                });
+            });
+        });
+
+        // Mouse Parallax Effect
+        const parallaxContainers = document.querySelectorAll('.mouse-parallax');
+        parallaxContainers.forEach(container => {
+            const layers = container.querySelectorAll('.parallax-layer');
+            const handleParallax = (e) => {
+                const bounds = container.getBoundingClientRect();
+                const centerX = bounds.left + bounds.width / 2;
+                const centerY = bounds.top + bounds.height / 2;
+                const deltaX = (e.clientX - centerX) / 20;
+                const deltaY = (e.clientY - centerY) / 20;
+
+
+                layers.forEach(layer => {
+                    gsap.to(layer, {
+                        x: deltaX,
+                        y: deltaY,
+                        duration: 0.1, // Reduced duration for smoother movement
+                        ease: "power1.out"
+                    });
+                });
+            };
+
+            container.addEventListener('mousemove', handleParallax);
+
+            container.addEventListener('mouseleave', () => {
+                layers.forEach(layer => {
+                    gsap.to(layer, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+            });
+        });
+
+        // Form Input Animations
+        const formInputs = document.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const line = input.nextElementSibling;
+                if (line) {
+                    line.style.width = '100%';
+                }
+            });
+
+            input.addEventListener('blur', () => {
+                const line = input.nextElementSibling;
+                if (line) {
+                    line.style.width = '0';
+                }
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: target,
+                        ease: "power2.inOut"
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Counter Animation Function
+        function animateCounter(element, start, end, duration, symbol = '') {
+            let current = start;
+            const increment = (end - start) / (duration / 20);
+
+            const counter = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    clearInterval(counter);
+                    element.textContent = Math.floor(end) + symbol;
+                } else {
+                    element.textContent = Math.floor(current) + symbol;
+                }
+            }, 20);
+        }
+
+        // Initialize Counters on Scroll
+        const counters = document.querySelectorAll("#counter1, #counter2, #counter3");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById("counter1"), 0, 22, 3000, '+'); // Years in Business
+                    animateCounter(document.getElementById("counter2"), 0, 2000, 3000, '+'); // Countries Served
+                    animateCounter(document.getElementById("counter3"), 0, 5000, 3000, '+'); // Projects Completed
+                    observer.disconnect(); // Trigger only once
+                }
+            });
+        });
+
+        // Observe the counters
+        observer.observe(counters[0]);
+    </script>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100); // Adjust the delay as needed
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
