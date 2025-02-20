@@ -1314,28 +1314,29 @@
                     </p>
                     <h2 class="text-4xl font-bold mb-8">Get in Touch</h2>
                     <p class="text-gray-400 mb-8">Have questions or need assistance? Contact our team today.</p>
-                    <form class="space-y-6">
+                    <form class="space-y-6" id="contactForm">
                         <div class="relative">
-                            <input type="text" placeholder="Your Name"
+                            <input type="text" placeholder="Your Name" id="contactName" required
                                 class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black">
                             <div
                                 class="absolute bottom--2 mt-1 left-0  w-0 h-0.5 bg-yellow-400 transition-all duration-300">
                             </div>
                         </div>
                         <div class="relative">
-                            <input type="email" placeholder="Your Email"
+                            <input type="email" placeholder="Your Email" id="contactEmail" required
                                 class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black">
                             <div
                                 class="absolute bottom--2 mt-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300">
                             </div>
                         </div>
                         <div class="relative">
-                            <textarea placeholder="Your Message" rows="4"
+                            <textarea placeholder="Your Message" rows="4" id="contactMessage" required
                                 class="w-full bg-black/50 border border-gray-700 rounded-lg p-4 focus:border-yellow-400 transition-colors duration-300 text-black"></textarea>
                             <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300">
                             </div>
                         </div>
-                        <button class="button-gradient magnetic-button w-full text-black py-4 rounded-lg font-medium">
+                        <button type="submit"
+                            class="button-gradient magnetic-button w-full text-black py-4 rounded-lg font-medium">
                             Send Message
                         </button>
                     </form>
@@ -1829,6 +1830,51 @@
                         });
                     }, 100); // Adjust the delay as needed
                 }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Validation
+                if (!contactForm.checkValidity()) {
+                    // More robust validation feedback (instead of a simple alert)
+                    const inputs = contactForm.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        if (!input.checkValidity()) {
+                            input.classList.add('border-red-500'); // Add a red border
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    return; // Stop the process if validation fails
+                }
+
+                const name = document.getElementById('contactName').value;
+                const email = document.getElementById('contactEmail').value;
+                const message = document.getElementById('contactMessage').value;
+
+                const subject = encodeURIComponent("Website Contact Form Submission");  // Encode for URL
+                const body = encodeURIComponent(`Name: ${name}\n\nEmail: ${email}\n\nMessage:\n${message}`); // Encode for URL
+
+                // Construct Gmail URL (using a web URL, not mailto:)
+                const gmailURL = `https://mail.google.com/mail/?view=cm&to=info@a1approved.co.uk&su=${subject}&body=${body}`;  // Use &to=
+
+                // Open a new tab/window with Gmail
+                window.open(gmailURL, '_blank');
+            });
+
+            // Remove red border on input focus (for better UX)
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.classList.remove('border-red-500');
+                });
             });
         });
     </script>
