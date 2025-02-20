@@ -446,18 +446,16 @@
             border-radius: 0.75rem;
         }
 
-        .close {
+         .close {
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
-            position: absolute;
-            /* Absolute positioning */
-            top: 10px;
-            /* Position from the top */
-            right: 15px;
-            /* Position from the right */
-
+            position: absolute; /* Absolute positioning */
+            top: 20px;       /* Position from the top */
+            right: 25px;     /* Position from the right */
+            z-index: 1002;    /* Ensure close button is above content */
+            padding: 5px;     /* Add some padding for easier clicking */
+            line-height: 1;  /* Remove extra line-height */
         }
 
         .close:hover,
